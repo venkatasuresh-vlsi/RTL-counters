@@ -1,0 +1,20 @@
+module tb_7bit;
+     reg clk, rst;
+	 wire [6:0] count;
+	 
+	 counter_7bit uut(
+	     .clk(clk),
+		 .rst(rst),
+		 .count(count)
+		 );
+	 initial clk = 0;
+	 always #5 clk <= ~clk;
+	 
+	 initial begin
+	     $monitor("Time=%0t | rst=%b | clk=%b | count=%b", $time, rst, clk, count);
+		     rst = 1; #10;
+			 rst =0;
+			 #1450;
+			$finish;
+		end
+	endmodule
